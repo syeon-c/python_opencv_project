@@ -50,6 +50,7 @@ qc_source = cv2.imread(newFilename)
 imgs = [sample_source, qc_source]
 hists = []
 
+## 이미지 그래프 생성 및 histogram 정규화
 for i, img in enumerate(imgs):
     plt.subplot(1,len(imgs),i+1)
     if i==0:
@@ -72,6 +73,7 @@ methods = {'CORREL': cv2.HISTCMP_CORREL, 'CHISQR': cv2.HISTCMP_CHISQR,
 
 print('=============함수별 이미지 유사도 결과============')
 
+## histogram 비교를 통한 이미지 유사도 측정
 for j, (name, flag) in enumerate(methods.items()):
     print('%-10s'%name, end='\t')
     for i, (hist, img) in enumerate(zip(hists, imgs)):
@@ -90,4 +92,5 @@ for j, (name, flag) in enumerate(methods.items()):
     print()
 plt.show()
 
+## 생성된 캡쳐파일 삭제
 os.remove(newFilename)
