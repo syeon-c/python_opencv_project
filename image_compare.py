@@ -11,8 +11,9 @@ import os
 ### videoTime: 검증할 특정 video 타임 구간
 
 fileDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/img"
-fileName = "sample.avi"
-videoTime = "00:04:50"
+sampleDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/sample_img"
+fileName = "yourname.mkv"
+videoTime = "00:10:08"
 
 ## 파일 실행 및 설정
 app = Application(backend="uia").start(r"C:/Program Files (x86)/GRETECH/GOMPlayer/GOM.EXE")
@@ -34,11 +35,11 @@ time.sleep(5)
 ## 캡쳐 파일 이름 변경
 ### 캡쳐된 파일은 일괄적으로 qc_source.png로 변경
 ### 검증에 쓰일 sample 파일은 동일한 경로에 sample_source.png로 미리 저장 필요
+
 fileList = os.listdir(fileDirectory)
-print(fileList)
 oldFileName = os.path.join(fileDirectory, fileList[0])
 newFilename = os.path.join(fileDirectory, 'qc_source.png')
-sampleSourceDirectory = os.path.join(fileDirectory, 'sample_source.png')
+sampleSourceDirectory = os.path.join(sampleDirectory, 'sample_source.png')
 os.rename(oldFileName, newFilename)
 
 time.sleep(5)
@@ -71,7 +72,7 @@ query = hists[0]
 methods = {'CORREL': cv2.HISTCMP_CORREL, 'CHISQR': cv2.HISTCMP_CHISQR,
 'INTERSECT': cv2.HISTCMP_INTERSECT, 'BHATTACHARYYA': cv2.HISTCMP_BHATTACHARYYA}
 
-print('=============함수별 이미지 유사도 결과============')
+print('=============함수별 이미지 유사도 결과=============')
 
 ## histogram 비교를 통한 이미지 유사도 측정
 for j, (name, flag) in enumerate(methods.items()):
@@ -82,7 +83,7 @@ for j, (name, flag) in enumerate(methods.items()):
             ret = ret/np.sum(query)
         if flag == cv2.HISTCMP_CORREL or flag == cv2.HISTCMP_INTERSECT:
             retRatio = ret * 100
-            if retRatio > 60:
+            if retRatio > 50:
                 result = 'PASS'
             else:
                 result = 'FAIL'    
