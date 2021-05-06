@@ -12,8 +12,8 @@ import os
 
 fileDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/img"
 sampleDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/sample_img"
-fileName = "yourname.mkv"
-videoTime = "00:10:08"
+fileName = "big_buck_bunny.mp4"
+videoTime = "00:00:23"
 
 ## 파일 실행 및 설정
 app = Application(backend="uia").start(r"C:/Program Files (x86)/GRETECH/GOMPlayer/GOM.EXE")
@@ -34,7 +34,7 @@ time.sleep(5)
 
 ## 캡쳐 파일 이름 변경
 ### 캡쳐된 파일은 일괄적으로 qc_source.png로 변경
-### 검증에 쓰일 sample 파일은 동일한 경로에 sample_source.png로 미리 저장 필요
+### 검증에 쓰일 sample 다른 경로에 sample_source.png로 미리 저장 필요
 
 fileList = os.listdir(fileDirectory)
 oldFileName = os.path.join(fileDirectory, fileList[0])
@@ -51,7 +51,7 @@ qc_source = cv2.imread(newFilename)
 imgs = [sample_source, qc_source]
 hists = []
 
-## 이미지 그래프 생성 및 histogram 정규화
+## 이미지 그래프 생성 및 histogram 계산
 for i, img in enumerate(imgs):
     plt.subplot(1,len(imgs),i+1)
     if i==0:
@@ -72,7 +72,7 @@ query = hists[0]
 methods = {'CORREL': cv2.HISTCMP_CORREL, 'CHISQR': cv2.HISTCMP_CHISQR,
 'INTERSECT': cv2.HISTCMP_INTERSECT, 'BHATTACHARYYA': cv2.HISTCMP_BHATTACHARYYA}
 
-print('=============함수별 이미지 유사도 결과=============')
+print('==============함수별 이미지 유사도 결과=============')
 
 ## histogram 비교를 통한 이미지 유사도 측정
 for j, (name, flag) in enumerate(methods.items()):
