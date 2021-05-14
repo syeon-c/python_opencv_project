@@ -12,25 +12,22 @@ import os
 
 fileDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/img"
 sampleDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/sample_img"
-fileName = "big_buck_bunny.mp4"
+fileName = "C://Users//gre508//Desktop/big_buck_bunny.mp4"
 videoTime = "00:00:23"
 
 ## 파일 실행 및 설정
-app = Application(backend="uia").start(r"C:/Program Files (x86)/GRETECH/GOMPlayer/GOM.EXE")
+##app = Application(backend="uia").start("C://Program Files (x86)//GRETECH//GOMPlayer//GOM.EXE")
+app = Application(backend="uia").start("C://Program Files (x86)//GRETECH//GOMPlayer//GOM.EXE "+ fileName)
 dig = app.window(title_re=".*곰플레이어")
 
-## 파일 열기
-dig.type_keys('{F2}')
-
-## 검증 파일 재생
-app.파일_열기.Edit13.type_keys(fileName+"{ENTER}")
+time.sleep(3)
 
 ## 특정 구간 이동 후 화면 캡쳐
 pyautogui.hotkey('g')
 dig.Edit.type_keys(videoTime+"{ENTER}")
 pyautogui.hotkey('ctrl','e')
 
-time.sleep(5)
+time.sleep(3)
 
 ## 캡쳐 파일 이름 변경
 ### 캡쳐된 파일은 일괄적으로 qc_source.png로 변경
@@ -42,7 +39,7 @@ newFilename = os.path.join(fileDirectory, 'qc_source.png')
 sampleSourceDirectory = os.path.join(sampleDirectory, 'sample_source.png')
 os.rename(oldFileName, newFilename)
 
-time.sleep(5)
+time.sleep(3)
 
 ## 샘플 이미지 set 불러오기
 sample_source = cv2.imread(sampleSourceDirectory)
