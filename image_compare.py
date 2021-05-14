@@ -16,7 +16,6 @@ fileName = "C://Users//gre508//Desktop/big_buck_bunny.mp4"
 videoTime = "00:00:23"
 
 ## 파일 실행 및 설정
-##app = Application(backend="uia").start("C://Program Files (x86)//GRETECH//GOMPlayer//GOM.EXE")
 app = Application(backend="uia").start("C://Program Files (x86)//GRETECH//GOMPlayer//GOM.EXE "+ fileName)
 dig = app.window(title_re=".*곰플레이어")
 
@@ -92,3 +91,6 @@ plt.show()
 
 ## 생성된 캡쳐파일 삭제
 os.remove(newFilename)
+
+## 곰플레이어 종료
+os.system("taskkill /f /im GOM.EXE")
