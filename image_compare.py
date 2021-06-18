@@ -5,15 +5,14 @@ from pywinauto.application import Application
 import time
 import os
 
-## 영상 파일 이름 / 사진 디렉토리(곰플 캡쳐본 저장 경로) 및 시간 설정 변수
 ### fileDirectory: 곰플 캡쳐본이 저장되는 경로 (\ -> / 로 변경 필수)
 ### fileName: 검증할 영상 파일 이름 (해당 영상은 반드시 바탕화면에 배치)
 ### videoTime: 검증할 특정 video 타임 구간
 
 fileDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/img"
 sampleDirectory = "C:/Users/gre508/Desktop/GomPlayer_Script/Kaze_Feature_Matching_project/sample_img"
-fileName = "C://Users//gre508//Desktop/big_buck_bunny.mp4"
-videoTime = "00:00:23"
+fileName = "C://Users//gre508//Desktop/sample.avi"
+videoTime = "00:15:00"
 
 ## 파일 실행 및 설정
 app = Application(backend="uia").start("C://Program Files (x86)//GRETECH//GOMPlayer//GOM.EXE "+ fileName)
